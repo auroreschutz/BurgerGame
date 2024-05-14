@@ -2,6 +2,7 @@
 <html lang="en"> 
 <head> 
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Flamingo 🦩 Collect the burgers !</title>
     <link rel="icon" type="image/png" href="assets/burger.png" />
     <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
@@ -9,14 +10,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h3>Help Kalas collect those delicious Flamingo burgers !</h3>
-    <p>But be careful, of the Empire dragons trying to get him !</p>
+   <div class="about"> <h1>Collect the Burgers</h1>
+    <p>Help <span style="color : #fb992e">Kalas</span> collect those delicious <span style="color : #fb992e">Flamingo Burgers</span> 🍔<br>
+    But be careful, the <span style="color : #fb992e">dragons</span> are trying to stop him !</p> 
+</div>
+    <div class="illu">
+        <img src="assets/kalasillu.png" alt="Kalas eating a burger">
+    </div>
 <div class="container">
-    <div class="centertest" id="centertest"></div>
+    <div class="game" id="game"></div>
 </div>
 
+<div id="orientationWarning">
+    <p>Please rotate your device to landscape mode.</p>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const orientationWarning = document.getElementById('orientationWarning');
+
+    // Function to check the orientation and display warning if necessary
+    function checkOrientation() {
+        if (window.innerHeight > window.innerWidth) {
+            // Portrait mode
+            orientationWarning.style.display = 'block';
+        } else {
+            // Landscape mode
+            orientationWarning.style.display = 'none';
+        }
+    }
+
+    // Check the orientation when the page loads
+    checkOrientation();
+
+    // Listen for orientation change events
+    window.addEventListener('resize', checkOrientation);
+});
+</script>
 
 
-
+<footer>made by <a href="https://auraenity.fr/">auraenity</a></footer>
 </body>
 </html>

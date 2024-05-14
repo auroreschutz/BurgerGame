@@ -1,18 +1,205 @@
-body{
-    margin: 0;
+@import url("https://fonts.googleapis.com/css2?family=Licorice&family=Nothing+You+Could+Do&family=Quicksand:wght@300;400;500;600;700&family=The+Nautigal&family=Waterfall&display=swap");
+@font-face {
+  font-family: aqua;
+  src: url(aqua.ttf);
+}
+
+* {
+  font-family: "Quicksand", sans-serif;
+  overflow-x: hidden !important;
+}
+
+body {
+  margin: 0;
+  background-color: #55205a;
+  background-image: url(assets/sky2.png);
+  background-size: cover;
+  max-height: 1080px;
 }
 
 .container {
-    display: flex; 
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.centertest {
-    display: flex; 
+h1,
+p {
+  z-index: 2;
+  text-align: center;
+  position: relative;
+}
+
+h1 {
+  text-transform: uppercase;
+  animation: birgir 6s ease-in-out infinite;
+  font-family: aqua;
+  font-size: 4rem;
+  margin: 15px;
+  color: transparent;
+  background: -webkit-linear-gradient(right, #fc9b2d, #cc186b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 8px transparent;
+  /* text-shadow: rgb(25, 25, 25) 10px 0px 0px, rgb(25, 25, 25) 9.95004px 0.998334px 0px, rgb(25, 25, 25) 9.80067px 1.98669px 0px, rgb(25, 25, 25) 9.55336px 2.9552px 0px, rgb(25, 25, 25) 9.21061px 3.89418px 0px, rgb(25, 25, 25) 8.77583px 4.79426px 0px, rgb(25, 25, 25) 8.25336px 5.64642px 0px, rgb(25, 25, 25) 7.64842px 6.44218px 0px, rgb(25, 25, 25) 6.96707px 7.17356px 0px, rgb(25, 25, 25) 6.2161px 7.83327px 0px, rgb(25, 25, 25) 5.40302px 8.41471px 0px, rgb(25, 25, 25) 4.53596px 8.91207px 0px, rgb(25, 25, 25) 3.62358px 9.32039px 0px, rgb(25, 25, 25) 2.67499px 9.63558px 0px, rgb(25, 25, 25) 1.69967px 9.8545px 0px, rgb(25, 25, 25) 0.707372px 9.97495px 0px, rgb(25, 25, 25) -0.291995px 9.99574px 0px, rgb(25, 25, 25) -1.28844px 9.91665px 0px, rgb(25, 25, 25) -2.27202px 9.73848px 0px, rgb(25, 25, 25) -3.2329px 9.463px 0px, rgb(25, 25, 25) -4.16147px 9.09297px 0px, rgb(25, 25, 25) -5.04846px 8.63209px 0px, rgb(25, 25, 25) -5.88501px 8.08496px 0px, rgb(25, 25, 25) -6.66276px 7.45705px 0px, rgb(25, 25, 25) -7.37394px 6.75463px 0px, rgb(25, 25, 25) -8.01144px 5.98472px 0px, rgb(25, 25, 25) -8.56889px 5.15501px 0px, rgb(25, 25, 25) -9.04072px 4.2738px 0px, rgb(25, 25, 25) -9.42222px 3.34988px 0px, rgb(25, 25, 25) -9.70958px 2.39249px 0px, rgb(25, 25, 25) -9.89993px 1.4112px 0px, rgb(25, 25, 25) -9.99135px 0.415807px 0px, rgb(25, 25, 25) -9.98295px -0.583741px 0px, rgb(25, 25, 25) -9.8748px -1.57746px 0px, rgb(25, 25, 25) -9.66798px -2.55541px 0px, rgb(25, 25, 25) -9.36457px -3.50783px 0px, rgb(25, 25, 25) -8.96758px -4.4252px 0px, rgb(25, 25, 25) -8.481px -5.29836px 0px, rgb(25, 25, 25) -7.90968px -6.11858px 0px, rgb(25, 25, 25) -7.25932px -6.87766px 0px, rgb(25, 25, 25) -6.53644px -7.56803px 0px, rgb(25, 25, 25) -5.74824px -8.18277px 0px, rgb(25, 25, 25) -4.90261px -8.71576px 0px, rgb(25, 25, 25) -4.00799px -9.16166px 0px, rgb(25, 25, 25) -3.07333px -9.51602px 0px, rgb(25, 25, 25) -2.10796px -9.7753px 0px, rgb(25, 25, 25) -1.12153px -9.93691px 0px, rgb(25, 25, 25) -0.123887px -9.99923px 0px, rgb(25, 25, 25) 0.87499px -9.96165px 0px, rgb(25, 25, 25) 1.86512px -9.82453px 0px, rgb(25, 25, 25) 2.83662px -9.58924px 0px, rgb(25, 25, 25) 3.77978px -9.25815px 0px, rgb(25, 25, 25) 4.68517px -8.83455px 0px, rgb(25, 25, 25) 5.54374px -8.32267px 0px, rgb(25, 25, 25) 6.34693px -7.72764px 0px, rgb(25, 25, 25) 7.0867px -7.0554px 0px, rgb(25, 25, 25) 7.75566px -6.31267px 0px, rgb(25, 25, 25) 8.34713px -5.50686px 0px, rgb(25, 25, 25) 8.8552px -4.64602px 0px, rgb(25, 25, 25) 9.27478px -3.73877px 0px, rgb(25, 25, 25) 9.6017px -2.79415px 0px, rgb(25, 25, 25) 9.83268px -1.82162px 0px, rgb(25, 25, 25) 9.96542px -0.830894px 0px; */
+}
+
+p {
+  font-size: large;
+  margin: 0;
+  color: #330d32;
+  font-weight: 700;
+  /* text-shadow: rgb(25, 25, 25) 4px 0px 0px, rgb(25, 25, 25) 3.87565px 0.989616px 0px, rgb(25, 25, 25) 3.51033px 1.9177px 0px, rgb(25, 25, 25) 2.92676px 2.72656px 0px, rgb(25, 25, 25) 2.16121px 3.36588px 0px, rgb(25, 25, 25) 1.26129px 3.79594px 0px, rgb(25, 25, 25) 0.282949px 3.98998px 0px, rgb(25, 25, 25) -0.712984px 3.93594px 0px, rgb(25, 25, 25) -1.66459px 3.63719px 0px, rgb(25, 25, 25) -2.51269px 3.11229px 0px, rgb(25, 25, 25) -3.20457px 2.39389px 0px, rgb(25, 25, 25) -3.69721px 1.52664px 0px, rgb(25, 25, 25) -3.95997px 0.56448px 0px, rgb(25, 25, 25) -3.97652px -0.432781px 0px, rgb(25, 25, 25) -3.74583px -1.40313px 0px, rgb(25, 25, 25) -3.28224px -2.28625px 0px, rgb(25, 25, 25) -2.61457px -3.02721px 0px, rgb(25, 25, 25) -1.78435px -3.57996px 0px, rgb(25, 25, 25) -0.843183px -3.91012px 0px, rgb(25, 25, 25) 0.150409px -3.99717px 0px, rgb(25, 25, 25) 1.13465px -3.8357px 0px, rgb(25, 25, 25) 2.04834px -3.43574px 0px, rgb(25, 25, 25) 2.83468px -2.82216px 0px, rgb(25, 25, 25) 3.44477px -2.03312px 0px, rgb(25, 25, 25) 3.84068px -1.11766px 0px, rgb(25, 25, 25) 3.9978px -0.132717px 0px; */
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  border: 0px solid #191919;
+  border-radius: 25px;
+  width: 800px;
+  height: 600px;
+  z-index: 10;
+  position: fixed;
+  left: 12%;
+  margin: 15px;
+  background: radial-gradient(
+        circle at 100% 100%,
+        transparent 0,
+        transparent 15px,
+        transparent 15px
+      )
+      0% 0%/25px 25px no-repeat,
+    radial-gradient(
+        circle at 0 100%,
+        transparent 0,
+        transparent 15px,
+        transparent 15px
+      )
+      100% 0%/25px 25px no-repeat,
+    radial-gradient(
+        circle at 100% 0,
+        transparent 0,
+        transparent 15px,
+        transparent 15px
+      )
+      0% 100%/25px 25px no-repeat,
+    radial-gradient(
+        circle at 0 0,
+        transparent 0,
+        transparent 15px,
+        transparent 15px
+      )
+      100% 100%/25px 25px no-repeat,
+    linear-gradient(transparent, transparent) 50% 50% / calc(100% - 20px)
+      calc(100% - 50px) no-repeat,
+    linear-gradient(transparent, transparent) 50% 50% / calc(100% - 50px)
+      calc(100% - 20px) no-repeat,
+    linear-gradient(0deg, #fc9b2d 0%, #cc186b 100%);
+  padding: 15px;
+  box-sizing: content-box;
+}
+
+.illu img {
+  z-index: 0;
+  max-height: 1000px;
+  position: fixed;
+  top: -5%;
+  right: 0;
+  padding-top: 20px;
+}
+
+footer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  z-index: 50;
+}
+
+footer a {
+  text-decoration: none;
+  color: #fc9b2d;
+  font-weight: 700;
+}
+
+#orientationWarning {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  z-index: 9999;
+}
+
+@media (max-width: 1400px) {
+  * {
+    position: static;
+  }
+
+  body {
+    margin: 0;
+    margin-top: 10px;
+    background-image: url(assets/sky3.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    border: 5px solid red; 
-    border-radius: 25px; 
-    margin: 50px; 
-    width: 800px;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  .game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:fit-content;
     height: 600px;
+    left: 0%;
+    margin: 10px;
+    border: 5px solid black;
+  }
+
+  .illu img {
+    top: 40%;
+    padding-top: 20px;
+  }
+
+  footer {
+    position: static;
+  }
+}
+
+@media (max-width: 900px) {
+    .game {
+        margin: 0px;
+      }
+
+}
+
+@keyframes birgir {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }

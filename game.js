@@ -2,7 +2,7 @@ var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    parent: 'centertest',
+    parent: 'game',
     scene: 'flamingo',
     physics: {
         default: 'arcade',
@@ -15,7 +15,8 @@ var config = {
         preload: preload,
         create: create,
         update: update
-    }
+    },
+
 };
 
 var player;
@@ -26,6 +27,11 @@ var cursors;
 var score = 0;
 var gameOver = false;
 var scoreText;
+var pointer;
+var isMovingLeft = false;
+var isMovingRight = false;
+var lastTapTime = 0;
+var tapDelay = 200; // Adjust this value to set the maximum delay between taps for a double tap
 
 
 
@@ -37,13 +43,14 @@ function preload ()
     this.load.image('ground', 'assets/platform.png');
     this.load.image('burger', 'assets/burger.png');
     this.load.image('bomb', 'assets/bomb.png');
-    this.load.image('overgame', 'assets/gameover.png');
-    this.load.image('tryagain', 'assets/button.png');
+    this.load.image('overgame', 'assets/gameover4.png');
+    this.load.image('tryagain', 'assets/button4.png');
     this.load.spritesheet('kalas', 'assets/kalas.png', { frameWidth: 40, frameHeight: 60 });
 }
 
 function create ()
 {
+   
     //  A simple background for our game
     this.add.image(400, 300, 'sky');
 
@@ -90,24 +97,33 @@ function create ()
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
 
+    // Enable touch input
+    this.input.addPointer(2); // Enable up to two pointers for multi-touch
+
+    // Set up double tap gesture
+    this.input.on('pointerdown', handleTouchStart, this);
+    this.input.on('pointerup', handleTouchEnd, this);
+
     //  Some burgers to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
     burgers = this.physics.add.group({
         key: 'burger',
-        repeat: 1,
+        repeat: 11,
         setXY: { x: 12, y: 0, stepX: 70 }
     });
 
     burgers.children.iterate(function (child) {
 
         //  Give each burger a slightly different bounce
-        child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+        child.setBounce(Phaser.Math.FloatBetween(0.5, 0.9));
+        child.setCollideWorldBounds(true);
+        child.setVelocity(Phaser.Math.Between(-70, 70), 20);
 
     });
 
     bombs = this.physics.add.group();
 
     //  The score
-    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    scoreText = this.add.text(16, 16, 'Score: 0', { font: '25px Aqua', fill: '#fc9a2e' });
 
     //  Collide the player and the burgers with the platforms
     this.physics.add.collider(player, platforms);
@@ -124,25 +140,21 @@ function update ()
 {
     if (gameOver)
     {
-        this.add.image(400, 300, 'overgame');
-        this.add.image(400, 450, 'tryagain').setInteractive({ useHandCursor: true }).on('pointerdown', () => this.scene.restart(gameOver = false) );
+        this.add.image(400, 200, 'overgame');
+        this.add.image(400, 400, 'tryagain').setInteractive({ useHandCursor: true }).on('pointerdown', () => this.scene.restart(gameOver = false) );
         return;
     }
 
-    if (cursors.left.isDown)
-    {
+    // Handle player movement
+    if (isMovingLeft || cursors.left.isDown) {
         player.setVelocityX(-160);
 
         player.anims.play('left', true);
-    }
-    else if (cursors.right.isDown)
-    {
+    } else if (isMovingRight || cursors.right.isDown) {
         player.setVelocityX(160);
 
         player.anims.play('right', true);
-    }
-    else
-    {
+    } else  {
         player.setVelocityX(0);
 
         player.anims.play('turn');
@@ -150,9 +162,16 @@ function update ()
 
     if (cursors.up.isDown && player.body.touching.down)
     {
+        jump();
+    }
+}
+
+function jump() {
+    if (player.body.touching.down) {
         player.setVelocityY(-330);
     }
 }
+
 
 function collectburger (player, burger)
 {
@@ -191,4 +210,28 @@ function hitBomb (player, bomb)
     player.anims.play('turn');
 
     gameOver = true;
+}
+
+
+
+function handleTouchStart(pointer) {
+    if (pointer.x < player.x) {
+        isMovingLeft = true;
+    } else {
+        isMovingRight = true;
+    }
+
+    // Check for double tap for jumping
+    var currentTime = new Date().getTime();
+    if (currentTime - lastTapTime < tapDelay) {
+        jump();
+        lastTapTime = 0; // Reset lastTapTime to prevent repeated jumps
+    } else {
+        lastTapTime = currentTime;
+    }
+}
+
+function handleTouchEnd(pointer) {
+    isMovingLeft = false;
+    isMovingRight = false;
 }
