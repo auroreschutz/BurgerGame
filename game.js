@@ -43,8 +43,8 @@ function preload ()
     this.load.image('ground', 'assets/platform.png');
     this.load.image('burger', 'assets/burger.png');
     this.load.image('bomb', 'assets/bomb.png');
-    this.load.image('overgame', 'assets/gameover4.png');
-    this.load.image('tryagain', 'assets/button4.png');
+    this.load.image('overgame', 'assets/gameover.png');
+    this.load.image('tryagain', 'assets/button.png');
     this.load.spritesheet('kalas', 'assets/kalas.png', { frameWidth: 40, frameHeight: 60 });
 }
 
